@@ -1,3 +1,4 @@
+[![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&label=contact%20Me)](https://linkedin.com/in/zatribune)
 ## Overview
 This is a Demo Project for an E-commerce Microservices Application that demonstrates Event-driven architecture using Kafka.  
 <p align="center">
@@ -13,7 +14,7 @@ The System consists of 3 microservices as shown in the next figure.
 
 
 <p align="center">
-<img src="inf/spring.svg" height="400" alt="overview"/>
+  <img  src="inf/overview.png" height="400" alt="overview"/>
 </p>  
 
 ## Steps to deploy
