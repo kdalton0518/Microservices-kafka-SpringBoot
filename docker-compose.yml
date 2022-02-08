@@ -2,6 +2,7 @@
 version: '2'
 services:
   zookeeper-1:
+    container_name: ecommerce-zookeeper-1
     image: confluentinc/cp-zookeeper:latest
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -10,6 +11,7 @@ services:
       - 22181:2181
 
   zookeeper-2:
+    container_name: ecommerce-zookeeper-2
     image: confluentinc/cp-zookeeper:latest
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -18,6 +20,7 @@ services:
       - 32181:2181
 
   kafka-1:
+    container_name: ecommerce-kafka-1
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper-1
@@ -33,6 +36,7 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
   kafka-2:
+    container_name: ecommerce-kafka-2
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper-1
@@ -46,3 +50,17 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  mysql:
+    container_name: ecommerce-mysql
+    image: mysql:latest
+    volumes:
+      - "./.mysql-data/db:/var/lib/mysql"
+    restart: always
+    ports:
+      - 33066:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: commerce
+      MYSQL_USER: john.doe
+      MYSQL_PASSWORD: 1234

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>zatribune.spring.example</groupId>
+    <groupId>com.zatribune.spring</groupId>
     <artifactId>ecommerce</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -13,13 +13,11 @@
     </description>
 
     <modules>
+        <module>commons</module>
         <module>ms-orders</module>
         <module>ms-payment</module>
-        <module>commons</module>
         <module>ms-stock</module>
     </modules>
-
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -27,4 +25,29 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration><!-- mvn release:prepare -->
+                    <goals>
+                        install
+                    </goals><!--this is to override the default deploy behaviour-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

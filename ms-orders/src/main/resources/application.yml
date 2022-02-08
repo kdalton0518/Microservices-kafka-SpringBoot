@@ -5,7 +5,7 @@ spring:
     hibernate:
       ddl-auto: create-drop
   datasource:
-    url: jdbc:mysql://localhost:3306/commerce
+    url: jdbc:mysql://127.0.0.1:33066/commerce
     username: root
     password: 1234
   h2:

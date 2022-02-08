@@ -3,24 +3,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.zatribune.spring</groupId>
+        <artifactId>ecommerce</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>zatribune.spring.example.ecommerce</groupId>
     <artifactId>ms-orders</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>ms-orders</name>
+    <version>1.0-SNAPSHOT</version>
     <description>Orders Microservice (Orchestrator)</description>
     <properties>
         <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>
-            <groupId>zatribune.spring.example.ecommerce</groupId>
+            <groupId>com.zatribune.spring</groupId>
             <artifactId>commons</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,11 +43,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

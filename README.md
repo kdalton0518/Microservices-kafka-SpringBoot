@@ -1,8 +1,8 @@
 ## Overview
 This is a Demo Project for an E-commerce Microservices Application that demonstrates Event-driven architecture using Kafka.  
 <p align="center">
-  <img  src="inf/spring.svg" width="200" height="200"/>
-  <img  src="inf/kafka.svg" width="200" height="200"/>
+<img src="inf/spring.svg" width="200" height="200" alt="spring"/>
+<img src="inf/kafka.svg" width="200" height="200" alt="kafka"/>
 </p>  
 
 ## Specs  
@@ -13,23 +13,52 @@ The System consists of 3 microservices as shown in the next figure.
 
 
 <p align="center">
-  <img  src="inf/spring.svg" height="400"/>
+<img src="inf/spring.svg" height="400" alt="overview"/>
 </p>  
 
 ## Steps to deploy
-- There are several ways to run a Spring Boot application on your local machine. 
-One way is to execute the `main` method 
-in the `com.raisin.recruiting.chanllenge.ChallengeApplication` class from your IDE.
+#### Deploying Kafka + MYSQL to Docker  
+First, we'll need to execute the docker compose file in order to initialize the required containers
+for our environment.  
+1. mysql  
+2. kafka-cluster-1  
+3. kafka-cluster-2  
+4. zookeeper-1  
+5. zookeeper-2  
 
-- Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
-
+run this command in the root directory
 ```shell
-mvn spring-boot:run
+docker-compose up -d
 ```
-
-## Testing
-- A postman collections file is provided to test the system (to be added).  
-- Load the file to postman and check the provided requests.
+The generated containers will have their name prefixed with "ecommerce". 
+In order to list generated containers, run this command:
+```shell
+docker ps --filter "name=ecommerce"
+```
+Since we are going to utilize 5 Docker containers which should communicate with 
+each other, we will need to start them on same network.  
+By default, these containers will be mapped to a generated network named 
+**ecommerce_default** with a (Bridge) driver.  
+To list docker networks, run this command to validate.
+```shell
+docker network ls
+```
+You can also run this command to inspect this network.
+```shell
+docker network inspect ecommerce_default
+```
+To validate containers' ports  
+```shell
+docker port {container_name}
+```
+Next, we'll create Docker images for our 3 spring-boot apps.
+```shell
+docker build -t ecommerce-orders -f DockerFile .
+docker build -t ecommerce-payments -f DockerFile .
+docker build -t ecommerce-stock -f DockerFile .
+```
+Finally, you can run those images locally (**ms-orders** is exposed to port 9091).  
+Alternately, you can use those images with **Kubernetes**.  
 
 ## Built With  
 &nbsp;&nbsp;&nbsp;&nbsp;**Java (JDK 11)** - The Main Programming Language and Framework.  
